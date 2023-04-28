@@ -45,7 +45,7 @@ const getShoppingCart = () => {
 
 const addItemToCart = (item) => {
   // should add item to shopping cart
-  shoppingCart.append(item)
+  shoppingCart.push(item)
   return shoppingCart
 }
 
@@ -57,8 +57,7 @@ const getNumItemsInCart = () => {
 
 const removeItemFromCart = (item) => {
   // should remove item from shopping cart
-  
-  const i = shoppingCart.indexOf("apple")
+  const i = shoppingCart.indexOf(item)
   shoppingCart.splice(i, 1)
 
   return shoppingCart

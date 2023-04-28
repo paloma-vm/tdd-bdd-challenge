@@ -67,30 +67,50 @@ it("Should create a new (object) Item with name and price", function() {
 })
 
 it("Should return an array containing all items in cart", function() {
-  const shoppingCart = utils.getShoppingCart()
+  shoppingCart = utils.getShoppingCart()
   expect(shoppingCart).to.exist
-  // expect(shoppingCart).to.be.a("object")
   expect(shoppingCart).to.be.empty
 })
 
 it("Should add a new item to the shopping cart", function() {
-  const item = utils.addItemToCart("banana", 1.29)
+  const newItem = utils.createItem("banana", 1.29)
+  shoppingCart = utils.addItemToCart(newItem)
 
-  expect(item).to.be.a("object")
-  expect(shoppingCart).to.include("banana")
+  expect(newItem).to.be.a("object")
+  expect(shoppingCart).to.have.lengthOf(1)
+  // console.log(shoppingCart)
+  expect(shoppingCart).to.have.members([newItem])
+
 })
 
 it("Should return the number of items in the cart", function() {
+  const item = utils.createItem("apple", 0.99)
+  // shoppingCart = utils.addItemToCart(item)
+  utils.addItemToCart(item) // don't need shoppingCart = 
+
   const numItems = utils.getNumItemsInCart()
   expect(numItems).to.be.a("Number")
-  expect(numItems).to.be.gte(2)
+  expect(numItems).to.be.gte(1)
 })
 
 
 it("Should remove items from cart", function() {
-  const cart = utils.removeItemFromCart("apple")
-  expect(cart).to.include("banana")
-  expect(cart).to.have.lengthOf(1)
+  const item1 = utils.createItem("apple", 0.99)
+  const item2 = utils.createItem("banana", 1.29)
+  const item3 = utils.createItem("orange", 1.49)
+  shoppingCart = utils.addItemToCart(item1)
+  shoppingCart = utils.addItemToCart(item2)
+  utils.addItemToCart(item3)
+
+
+  // const shoppingCart = utils.addItemToCart(item2)
+  console.log(shoppingCart)
+
+  shoppingCart = utils.removeItemFromCart(item1)
+  expect(shoppingCart).to.include(item2)
+  expect(shoppingCart).to.have.lengthOf(2)
+  console.log(shoppingCart)
+
 })
 
 // ========================================================
