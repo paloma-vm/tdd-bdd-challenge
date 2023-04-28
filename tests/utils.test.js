@@ -102,8 +102,6 @@ it("Should remove items from cart", function() {
   shoppingCart = utils.addItemToCart(item2)
   utils.addItemToCart(item3)
 
-
-  // const shoppingCart = utils.addItemToCart(item2)
   console.log(shoppingCart)
 
   shoppingCart = utils.removeItemFromCart(item1)
@@ -117,7 +115,20 @@ it("Should remove items from cart", function() {
 // Stretch Challenges
 // ========================================================
 
-it("Should update the count of items in the cart")
+it("Should update the count of items in the cart", function() {
+  const item1 = utils.createItem("apple", 0.99)
+  const item2 = utils.createItem("banana", 1.29)
+  const item3 = utils.createItem("orange", 1.49)
+  utils.addItemToCart(item1)
+  utils.addItemToCart(item2)
+  utils.addItemToCart(item3)
+
+  utils.updateItemQty('apple', 5)
+  expect(shoppingCart[0].quantity).to.equal(6)
+  utils.updateItemQty('orange', -1)
+  expect(shoppingCart[2].quantity).to.equal(0)
+})
+
 
 it("Should validate that an empty cart has 0 items")
 
